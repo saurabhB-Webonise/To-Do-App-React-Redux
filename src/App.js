@@ -1,6 +1,6 @@
 import './App.css';
-import { TodoList } from './components/TodoList'
-import { AddTodo } from './components/AddTodo'
+import { TodoList } from './components/todolist/TodoList'
+import { AddTodo } from './components/addtodo/AddTodo'
 
 function App() {
   return <div className="App">
