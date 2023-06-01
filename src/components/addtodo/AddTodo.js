@@ -7,6 +7,13 @@ export const AddTodo = () => {
     const dispatch = useDispatch()
     let inputRef = useRef('')
 
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight+1000,
+            behavior: 'smooth',
+        });
+    };
+    
     const addHandler = () => {
         let text = inputRef.current.value.toString().trim()
         if (text.length == 0) {
@@ -14,6 +21,7 @@ export const AddTodo = () => {
             return
         }
         dispatch(addTodo(text))
+        scrollToBottom()
     }
 
     return <div className='mainDiv'>
