@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import TodoItems from '../todoitems/TodoItems';
 import './todolist.css'
 
 export const TodoList = () => {
     const todoData = useSelector(state => state)
-    let refs = useRef()
 
     const scrollToBottom = () => {
         window.scrollTo({
@@ -18,7 +17,7 @@ export const TodoList = () => {
     }, [todoData])
 
     return (
-        <div ref={refs} className='mainContainer'>
+        <div className='mainContainer'>
             {
                 (todoData !== undefined)
                     ? todoData.map(data => (
