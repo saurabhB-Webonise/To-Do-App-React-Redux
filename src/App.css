@@ -9,3 +9,12 @@
   /* center items vertically, in this case */
   align-items: center;
 }
+
+#scrollTopButton {
+  height: 100px;
+  margin: 20px;
+  color: orange;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
