@@ -2,14 +2,16 @@ import React, { useRef } from "react";
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../../actions/todoActions'
 import './addtodo.css'
+import { containsWhitespace } from '../../utils/utils'
 
 export const AddTodo = () => {
     const dispatch = useDispatch()
     let inputRef = useRef('')
 
     const addHandler = () => {
-        if (inputRef.current.value.toString() !== ' ' && inputRef.current.value.toString().length !== 0)
-            dispatch(addTodo(inputRef.current.value.toString()))
+        let text = inputRef.current.value.toString()
+        if (containsWhitespace(text) && text.length !== 0)
+            dispatch(addTodo(text))
         else
             alert('Wrong input')
     }
