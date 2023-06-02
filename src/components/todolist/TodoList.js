@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { completionStatus, moveToTrash } from '../../actions/todoActions';
+import { completionStatus, toggleMoveToTrash } from '../../actions/todoActions';
 import TodoItems from '../todoitems/TodoItems';
 import './todolist.css'
 
@@ -13,7 +13,7 @@ function TodoList() {
     }
 
     const trashhandler = (id) => {
-        dispatch(moveToTrash(id))
+        dispatch(toggleMoveToTrash(id))
     }
 
     return (
@@ -34,3 +34,4 @@ function TodoList() {
 }
 
 export default TodoList
+

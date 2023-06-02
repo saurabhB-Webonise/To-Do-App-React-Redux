@@ -19,7 +19,7 @@ function AddTodo() {
     }
 
     const addHandler = () => {
-        if (text.trim().length == 0) {
+        if (text.trim().length === 0) {
             setText('')
             alert('Invalid empty not allowed')
             return

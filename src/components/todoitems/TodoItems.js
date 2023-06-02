@@ -8,6 +8,7 @@ function TodoItems({ onCheck, onClick, data }) {
         <div>
             <input style={{ marginLeft: '15px', accentColor: 'orange' }}
                 type='checkbox'
+                value={data.completed}
                 onChange={() => { onCheck(data.id) }} />
             <label style={{ marginLeft: '20px' }}>{data.text}</label>
         </div>
@@ -16,4 +17,5 @@ function TodoItems({ onCheck, onClick, data }) {
 }
 
 export default TodoItems
+
 
