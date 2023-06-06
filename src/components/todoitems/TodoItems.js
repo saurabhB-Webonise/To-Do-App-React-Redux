@@ -5,14 +5,14 @@ import { FaTrash } from 'react-icons/fa';
 function TodoItems({ onCheck, onClick, data }) {
 
     return <div className='todoitem' >
-        <div>
+        <div className='div1'> 
             <input style={{ marginLeft: '15px', accentColor: 'orange' }}
                 type='checkbox'
                 value={data.completed}
                 onChange={() => { onCheck(data.id) }} />
             <label style={{ marginLeft: '20px' }}>{data.text}</label>
         </div>
-        <FaTrash style={{ marginRight: '5px', color: 'orange' }} onClick={() => { onClick(data.id) }} />
+        <FaTrash id='deleteButton' onClick={() => { onClick(data.id) }} />
     </div>
 }
 
