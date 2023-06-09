@@ -10,6 +10,8 @@ function TodoList() {
     let dispatch = useDispatch()
 
     const checkHandler = (id) => {
+        console.log(id)
+        
         dispatch(toggleCompleteStatus(id))
     }
 
