@@ -1,5 +1,5 @@
 
-import { ADD_TODO, MOVE_TO_TRASH_TODO, PERMANENT_DELETE_TODO, COMPELETION_STATUS_TODO } from '../actions/todoActions'
+import { ADD_TODO, TOGGLE_MOVE_TO_TRASH_TODO, PERMANENT_DELETE_TODO, COMPELETION_STATUS_TODO } from '../actions/todoActions'
 
 const todoReducer = (state = [], action) => {
     switch (action.type) {
@@ -11,7 +11,7 @@ const todoReducer = (state = [], action) => {
                 trashed: false
             }]
 
-        case MOVE_TO_TRASH_TODO:
+        case TOGGLE_MOVE_TO_TRASH_TODO:
             return state.map(todo => (todo.id === action.id) ? { ...todo, trashed: !todo.trashed } : todo)
 
         case PERMANENT_DELETE_TODO:
@@ -27,3 +27,4 @@ const todoReducer = (state = [], action) => {
 
 
 export default todoReducer
+

@@ -1,6 +1,6 @@
 
 export const ADD_TODO = 'ADD_TODO';
-export const MOVE_TO_TRASH_TODO = 'MOVE_TO_TRASH_TODO';
+export const TOGGLE_MOVE_TO_TRASH_TODO = 'TOGGLE_MOVE_TO_TRASH_TODO';
 export const PERMANENT_DELETE_TODO = 'PERMANENT_DELETE_TODO';
 export const COMPELETION_STATUS_TODO = 'COMPELETION_STATUS_TODO'
 
@@ -17,8 +17,8 @@ export const completionStatus = id => ({
     id: id
 })
 
-export const moveToTrash = id => ({
-    type: MOVE_TO_TRASH_TODO,
+export const toggleMoveToTrash = id => ({
+    type: TOGGLE_MOVE_TO_TRASH_TODO,
     id: id
 })
 
@@ -26,4 +26,6 @@ export const permanentDelete = id => ({
     type: PERMANENT_DELETE_TODO,
     id
 })
+
+
 
