@@ -7,8 +7,6 @@ export default function SideBar() {
             <div className="sideBarWrapper">
 
             </div>
-        
-        
         </div>
     )
 }

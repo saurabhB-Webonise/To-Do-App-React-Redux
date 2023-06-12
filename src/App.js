@@ -12,8 +12,7 @@ function App() {
     <Header />
     <div className="App">
       <SideBar/>
-    
-      <Routes>
+        <Routes>
         <Route exact path="/" element={<Todo/>}/>
         <Route exact path="/todo" element={<Todo/>}/>
         <Route exact path="/trash" element={<Trash/>}/>

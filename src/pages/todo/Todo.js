@@ -14,8 +14,9 @@ export default function Home() {
   };
   return (
     <div className="home">
-      {/* <TodoList />
-      <FaAngleUp id='scrollTopButton'
+
+      <TodoList />
+      {/* <FaAngleUp id='scrollTopButton'
         onClick={scrollToTop} /> */}
     </div>
   )
