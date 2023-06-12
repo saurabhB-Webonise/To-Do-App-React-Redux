@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import './addtodo.css'
-import { todoAdd } from '../../states/slice/todoSlice'
+import { useDispatch } from 'react-redux';
+import './addtodo.css';
+import { todoAdd } from '../../states/slice/todoSlice';
 
 
 function AddTodo() {

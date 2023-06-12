@@ -18,10 +18,9 @@
   box-shadow: 0 8px 16px 0 orange;
   transition: 0.3s;
   white-space: initial;
- /* transform: scale(1.1);  */
 }
 
-.div1 {
+.todoItemWrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,16 +31,24 @@
   transition: all .2s ease-in-out;
 }
 
-.todoitem:hover .div1 {
+.todoitem:hover .todoItemWrapper {
   transition: 0.3s;
   white-space: initial;
-  height:auto;
+  height: auto;
   white-space: break-spaces;
-  
 }
 
-#deleteButton {
+.deleteButton {
   margin-right: 5px;
   color: orange;
   width: 5%;
+}
+
+.todoText {
+  margin-left: 20px;
+}
+
+.checkBox {
+  margin-left: 15px;
+  accent-color: orange;
 }

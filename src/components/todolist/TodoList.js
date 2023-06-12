@@ -1,17 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TodoItems from '../todoitems/TodoItems';
-import { toggleMoveToTrash, toggleCompleteStatus } from '../../states/slice/todoSlice'
-import './todolist.css'
-
+import { toggleMoveToTrash, toggleCompleteStatus } from '../../states/slice/todoSlice';
+import './todolist.css';
 
 function TodoList() {
-    const todoDatas = useSelector(state => state.todoData.data)
+
+    const todoData = useSelector(state => state.todoData.data)
     let dispatch = useDispatch()
 
     const checkHandler = (id) => {
-        console.log(id)
-        
         dispatch(toggleCompleteStatus(id))
     }
 
@@ -22,20 +20,18 @@ function TodoList() {
     return (
         <div className='mainContainer'>
             {
-                (todoDatas !== undefined)
-                    ? todoDatas.map(data => (
-                        (!data.trashed) ? <TodoItems key={data.id}
-                            data={data}
-                            onCheck={checkHandler}
-                            onClick={trashhandler}
-                        /> : <></>
-                    )
-                    ) : <></>
+                Array.isArray(todoData) &&
+                todoData.map(data => (
+                    !data.trashed &&
+                    <TodoItems key={data.id}
+                        data={data}
+                        onCheck={checkHandler}
+                        onClick={trashhandler}
+                    />)
+                )
             }
         </div>
     );
 }
 
 export default TodoList
-
-

@@ -2,7 +2,7 @@
 export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_MOVE_TO_TRASH_TODO = 'TOGGLE_MOVE_TO_TRASH_TODO';
 export const PERMANENT_DELETE_TODO = 'PERMANENT_DELETE_TODO';
-export const COMPELETION_STATUS_TODO = 'COMPELETION_STATUS_TODO'
+export const COMPELETION_STATUS_TODO = 'COMPELETION_STATUS_TODO';
 
 let ids = 0
 
@@ -26,6 +26,3 @@ export const permanentDelete = id => ({
     type: PERMANENT_DELETE_TODO,
     id
 })
-
-
-
