@@ -1,26 +1,25 @@
 import React from 'react';
 import './App.css';
-import TodoList from './components/todolist/TodoList'
-import AddTodo from './components/addtodo/AddTodo'
-import { FaAngleUp } from 'react-icons/fa';
+import Todo from './pages/todo/Todo'
+import Trash from './pages/trash/Trash'
+import Header from './components/header/header'
+import SideBar from './components/sidebar/SideBar'
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  return <div className="App">
-    <AddTodo />
-    <br />
-    <TodoList />
-    <FaAngleUp id='scrollTopButton'
-      onClick={scrollToTop} />
-  </div>
+  return <Router>
+    <Header />
+    <div className="App">
+      <SideBar/>
+    
+      <Routes>
+        <Route exact path="/" element={<Todo/>}/>
+        <Route exact path="/todo" element={<Todo/>}/>
+        <Route exact path="/trash" element={<Trash/>}/>
+      </Routes>
+    </div>
+  </Router>
 }
 
 export default App;
