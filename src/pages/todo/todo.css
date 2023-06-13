@@ -3,7 +3,7 @@
   background-color: blueviolet;
 }
 
-/* #scrollTopButton {
+#scrollTopButton {
   height: 100px;
   margin: 20px;
   color: orange;
@@ -12,24 +12,20 @@
   right: 0;
 }
 
-
 ::-webkit-scrollbar {
   width: 15px;
 }
-
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 4px;
 }
 
-
 ::-webkit-scrollbar-thumb {
   background: orange;
   border-radius: 4px;
 }
 
-
 ::-webkit-scrollbar-thumb:hover {
   background: orange;
-} */
+}

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import './addtodo.css'
-import { todoAdd } from '../../states/slice/todoSlice'
-
+import { useDispatch } from 'react-redux';
+import './addtodo.css';
+import { todoAdd } from '../../states/slice/todoSlice';
 
 function AddTodo() {
     const [text, setText] = useState("")
@@ -30,7 +29,7 @@ function AddTodo() {
         scrollToBottom()
     }
 
-    return <div className='mainDiv'>
+    return <div className='todoMainDiv'>
         <input
             className="inputBox"
             type="text"
@@ -47,4 +46,3 @@ function AddTodo() {
 }
 
 export default AddTodo
-

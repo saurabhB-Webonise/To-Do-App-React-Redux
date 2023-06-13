@@ -1,16 +1,32 @@
 .sideBar {
     flex: 1;
-    
     height: calc(100vh - 61px);
-    background-color:aqua;
+    background-color: aqua;
     position: sticky;
     top: 61px;
- }
-.sideBarWrapper{
-
 }
 
-.sideBarMenu{
 
+.sideBarWrapper {
+    padding: 20px;
 }
 
+.sideBarMenu {
+    margin-bottom: 10px;;
+}
+
+.sideBarTitle{
+    font-family: sans-serif;
+    font-weight: 500em;
+    color: #202124;
+    margin-left: 15px;
+    font-size: 12px;
+    padding: 5px;
+}
+.link{
+    text-decoration: none;
+}
+
+.sideBarListItem.active{
+    background-color: red;
+}

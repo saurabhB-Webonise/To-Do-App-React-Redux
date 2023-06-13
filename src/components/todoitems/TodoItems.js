@@ -1,24 +1,24 @@
-import React from 'react'
-import './todoitems.css'
+import React from 'react';
+import './todoitems.css';
 import { FaTrash } from 'react-icons/fa';
 
 function TodoItems({ onCheck, onClick, data }) {
+
+    const checkHandler = () => {
+        onCheck(data.id)
+    }
+
+    const clickHandler = () => {
+        onClick(data.id)
+    }
+
     return <div className='todoitem' >
-        <div className='div1'>
-            <input style={{ marginLeft: '15px', accentColor: 'orange' }}
-                type='checkbox'
-                onChange={(e) => {
-                    onCheck(data.id)
-                }}
-                checked={data.completed}
-            />
-            <label style={{ marginLeft: '20px' }}>{data.text}</label>
+        <div className='todoItemWrapper'>
+            <input className='checkBox' type='checkbox' onChange={checkHandler} checked={data.completed} />
+            <label className='todoText'>{data.text}</label>
         </div>
-        <FaTrash id='deleteButton' onClick={() => { onClick(data.id) }} />
+        <span className='deleteButton'><FaTrash onClick={clickHandler} /></span>
     </div>
 }
 
 export default TodoItems
-
-
-
