@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './todoitems.css';
 import { FaTrash } from 'react-icons/fa';
 
 function TodoItems({ onCheck, onClick, data }) {
+
+    const checkRef = useRef()
+
+    useEffect(() => {
+        const span = checkRef.current
+        span.className = data.completed == true ? "todoTextComplete" : "todoText"
+    }, [data.completed])
 
     const checkHandler = () => {
         onCheck(data.id)
