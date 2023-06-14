@@ -8,7 +8,7 @@ function TodoItems({ onCheck, onClick, data }) {
 
     useEffect(() => {
         const label = labelRef.current
-        label.className = data.completed == true ? "todoTextComplete" : "todoText"
+        label.className = data.completed ? "todoTextComplete" : "todoText"
     }, [data.completed])
 
     const checkHandler = () => {
