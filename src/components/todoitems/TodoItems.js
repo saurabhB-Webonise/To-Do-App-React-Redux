@@ -4,11 +4,11 @@ import { FaTrash } from 'react-icons/fa';
 
 function TodoItems({ onCheck, onClick, data }) {
 
-    const checkRef = useRef()
+    const labelRef = useRef()
 
     useEffect(() => {
-        const span = checkRef.current
-        span.className = data.completed == true ? "todoTextComplete" : "todoText"
+        const label = labelRef.current
+        label.className = data.completed == true ? "todoTextComplete" : "todoText"
     }, [data.completed])
 
     const checkHandler = () => {
@@ -22,7 +22,7 @@ function TodoItems({ onCheck, onClick, data }) {
     return <div className='todoitem' >
         <div className='todoItemWrapper'>
             <input className='checkBox' type='checkbox' onChange={checkHandler} checked={data.completed} />
-            <label className='todoText'>{data.text}</label>
+            <label ref={labelRef}className='todoText'>{data.text}</label>
         </div>
         <span className='deleteButton'> <FaTrash onClick={clickHandler} /></span>
     </div>
