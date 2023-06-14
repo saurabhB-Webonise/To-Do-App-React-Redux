@@ -48,6 +48,11 @@
   margin-left: 20px;
 }
 
+.todoTextComplete {
+  margin-left: 20px;
+  text-decoration: line-through;
+}
+
 .checkBox {
   margin-left: 15px;
   accent-color: orange;
