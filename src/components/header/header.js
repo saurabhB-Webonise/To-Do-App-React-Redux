@@ -6,11 +6,11 @@ import logo from '../../keep_2020q4_48dp.png';
 
 function Header() {
     return <div className='mainDiv'>
-        <div className="headerWrapper" >
+        <div className="headerWrapper">
             <div className="ch1">
-                <GiHamburgerMenu className="hamberMenuIcon" color="#83868A" />
-                <span className="documentIcon" ><img src={logo}/></span>
-                <h1 className="titleHeader">keep</h1>
+                <GiHamburgerMenu size={20} className="hamberMenuIcon" color="#83868A"/>
+                <span className="documentIcon"><img src={logo} height={40} width={40}/></span>
+                <h1 className="titleHeader">Keep</h1>
             </div>
             <div className="ch2">
                 <svg style={{ position: 'fixed', marginLeft: '15px' }} focusable="false" height="24px" viewBox="0 0 24 24" width="24px" >
@@ -19,7 +19,7 @@ function Header() {
                 </svg>
                 <input className='searchBox' type="text" placeholder="Search" />
             </div>
-            <div className="ch3">one</div>
+            <div className="ch3"></div>
         </div>
     </div>
 }

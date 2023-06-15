@@ -1,6 +1,6 @@
 .home {
-  flex: 4;
-  background-color: blueviolet;
+  flex: 4.5;
+  align-items: center;
 }
 
 #scrollTopButton {
