@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux'
-import { addTodo } from '../../actions/todoActions'
-import './addtodo.css'
+import { useDispatch } from 'react-redux';
+import './addtodo.css';
+import { todoAdd } from '../../states/slice/todoSlice';
+
 
 function AddTodo() {
     const [text, setText] = useState("")
@@ -24,7 +25,7 @@ function AddTodo() {
             alert('Invalid empty not allowed')
             return
         }
-        dispatch(addTodo(text.trim()))
+        dispatch(todoAdd(text.trim()))
         setText('')
         scrollToBottom()
     }

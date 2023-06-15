@@ -1,5 +1,5 @@
 
-import { ADD_TODO, TOGGLE_MOVE_TO_TRASH_TODO, PERMANENT_DELETE_TODO, COMPELETION_STATUS_TODO } from '../actions/todoActions'
+import { ADD_TODO, TOGGLE_MOVE_TO_TRASH_TODO, PERMANENT_DELETE_TODO, COMPELETION_STATUS_TODO } from '../actions/todoActions';
 
 const todoReducer = (state = [], action) => {
     switch (action.type) {
@@ -25,6 +25,4 @@ const todoReducer = (state = [], action) => {
     }
 }
 
-
 export default todoReducer
-
