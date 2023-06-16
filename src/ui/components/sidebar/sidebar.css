@@ -1,9 +1,20 @@
 .sideBar {
-    /* flex: 0; */
+    flex: 0.18;
+    width: 60px;
     height: calc(100vh - 61px);
-    
-    min-width: 60px;
     top: 61px;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.sideBar.open {
+    flex: 1;
+    width: 0px;
+    height: calc(100vh - 61px);
+    top: 61px;
+    position: sticky;
+    background-color: white;
+    transition: 0.5s;
 }
 
 .sideBarList {}
@@ -24,12 +35,16 @@
     font-size: 15px;
     padding: 5px;
     margin-left: 15px;
+    transition: 0.5s;
+}
+
+.sideBarTitle.close {
     display: none;
+    transition: 0.5s;
 }
 
 .link {
     text-decoration: none;
-    background-color: red;
 }
 
 .sideBarListItem.active {
@@ -39,10 +54,10 @@
 .sideBarListItem {
     display: flex;
     align-items: center;
+    height: 30px;
     padding: 5px;
     padding: 11px 0px 11px 20px;
     border-radius: 0 100px 100px 0;
-    
 }
 
 .sideBarListItem:hover {

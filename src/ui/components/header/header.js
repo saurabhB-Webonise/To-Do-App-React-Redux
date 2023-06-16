@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import './header.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { HiDocument } from 'react-icons/hi';
-import logo from '../../keep_2020q4_48dp.png';
+import logo from '../../../keep_logo.png';
 
-function Header() {
-    return <div className='mainDiv'>
+function Header({ onClick }) {
+
+    const sidebar = useRef()
+
+    const hamberMenuclickHandller = () => {
+        onClick()
+    }
+
+    return <div ref={sidebar} className='headerDiv'>
         <div className="headerWrapper">
             <div className="ch1">
-                <GiHamburgerMenu size={20} className="hamberMenuIcon" color="#83868A"/>
-                <span className="documentIcon"><img src={logo} height={40} width={40}/></span>
+                <GiHamburgerMenu size={20} className="hamberMenuIcon" color="#83868A" onClick={hamberMenuclickHandller} />
+                <span className="documentIcon"><img src={logo} height={40} width={40} /></span>
                 <h1 className="titleHeader">Keep</h1>
             </div>
             <div className="ch2">

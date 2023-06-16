@@ -1,13 +1,11 @@
 import React from 'react';
 import './todo.css';
 import TodoList from '../../components/todolist/TodoList';
-import SideBar from '../../components/sidebar/SideBar';
 import { FaAngleUp } from 'react-icons/fa';
-import Todo from '../../components/addtodo/AddTodo'
 import AddTodo from '../../components/addtodo/AddTodo';
 
-export default function Home() {
-  
+export default function Todo() {
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -17,8 +15,8 @@ export default function Home() {
 
   return (
     <div className="home">
-      <AddTodo/>
-      <TodoList />
+      <AddTodo />
+      <TodoList disableCheck={false} disableDeleteButton={false} trashed={false} />
       <FaAngleUp id='scrollTopButton'
         onClick={scrollToTop} />
     </div>
