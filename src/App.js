@@ -1,25 +1,16 @@
 import React from 'react';
-import './App.css';
-import TodoList from './components/todolist/TodoList';
-import AddTodo from './components/addtodo/AddTodo';
-import { FaAngleUp } from 'react-icons/fa';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './pages/auth/Login';
+import Home from './pages/home/Home';
+
 
 function App() {
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  return <div className="App">
-    <AddTodo />
-    <br />
-    <TodoList />
-    <FaAngleUp id='scrollTopButton'
-      onClick={scrollToTop} />
-  </div>
+  return <BrowserRouter>
+  <Routes>
+      <Route path='/' exact element={Login} />
+      <Route path='/home' element={Home} />
+  </Routes>
+</BrowserRouter>
 }
 
 export default App;
