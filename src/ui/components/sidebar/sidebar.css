@@ -1,7 +1,7 @@
 .sideBar {
     flex: 0.18;
-    width: 60px;
     height: calc(100vh - 61px);
+    position: sticky;
     top: 61px;
     background-color: white;
     transition: 0.5s;
@@ -9,7 +9,6 @@
 
 .sideBar.open {
     flex: 1;
-    width: 0px;
     height: calc(100vh - 61px);
     top: 61px;
     position: sticky;
@@ -31,16 +30,24 @@
     font-family: sans-serif;
     font-weight: 500em;
     color: #202124;
-    margin-left: 15px;
     font-size: 15px;
     padding: 5px;
     margin-left: 15px;
     transition: 0.5s;
+    margin-left: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .sideBarTitle.close {
-    display: none;
+    width: 0px;
+    max-width: 0px;
     transition: 0.5s;
+    margin-left: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .link {
