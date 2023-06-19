@@ -6,9 +6,9 @@ import { todoAdd } from '../../states/slice/todoSlice';
 import { logout } from "../../states/slice/authSlice";
 
 function AddTodo() {
-    const [text, setText] = useState("")
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const [text, setText] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const scrollToBottom = () => {
         window.scrollTo({
@@ -18,19 +18,24 @@ function AddTodo() {
     };
 
     const textChange = (e) => {
-        setText(e.target.value)
-    }
+        setText(e.target.value);
+    };
 
     const addHandler = () => {
         if (text.trim().length === 0) {
-            setText('')
-            alert('Invalid empty not allowed')
-            return
+            setText('');
+            alert('Invalid empty not allowed');
+            return;
         }
-        dispatch(todoAdd(text.trim()))
-        setText('')
-        scrollToBottom()
-    }
+        dispatch(todoAdd(text.trim()));
+        setText('');
+        scrollToBottom();
+    };
+
+    const logoutHandler = () => {
+        dispatch(logout());
+        navigate('/', { replace: true });
+    };
 
     return <div className='mainDiv'>
         <input
@@ -48,12 +53,9 @@ function AddTodo() {
         <input className="addButton"
             type="button"
             value="Logout"
-            onClick={() => {
-                dispatch(logout())
-                navigate('/', { replace: true })
-            }} />
+            onClick={logoutHandler} />
     </div>
 }
 
-export default AddTodo
+export default AddTodo;
 

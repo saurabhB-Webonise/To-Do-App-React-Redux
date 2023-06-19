@@ -8,7 +8,7 @@ import './home.css';
 
 export default function Home() {
   const { data, loading, error } = useSelector((state) => state.api);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -18,10 +18,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      navigate('/pageNotFound', { replace: true })
+    if(!loading){
+      if (Array.isArray(data)) {
+        navigate('/pageNotFound', { replace: true });
+      }
     }
-  }, [data])
+  }, [data]);
 
   if (Array.isArray(data)){
     return <></>

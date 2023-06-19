@@ -6,16 +6,16 @@ import './todolist.css';
 
 function TodoList() {
 
-    const todoData = useSelector(state => state.todoData.data)
-    let dispatch = useDispatch()
+    const todoData = useSelector(state => state.todoData.data);
+    let dispatch = useDispatch();
 
     const checkHandler = (id) => {
-        dispatch(toggleCompleteStatus(id))
-    }
+        dispatch(toggleCompleteStatus(id));
+    };
 
     const trashhandler = (id) => {
-        dispatch(toggleMoveToTrash(id))
-    }
+        dispatch(toggleMoveToTrash(id));
+    };
 
     return (
         <div className='mainContainer'>
@@ -34,4 +34,4 @@ function TodoList() {
     );
 }
 
-export default TodoList
+export default TodoList;

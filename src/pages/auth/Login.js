@@ -4,43 +4,37 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authData } from '../../states/slice/authSlice';
 
-// I will remove this just for testing purpose
-// username: kminchelle
-// password: 0lelplR
-
 export default function Login() {
 
-    const [userName, setUserName] = useState('')
-    const [password, setpassword] = useState('')
+    const [userName, setUserName] = useState('');
+    const [password, setpassword] = useState('');
     const { data, loading, error } = useSelector((state) => state.api);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!Array.isArray(data)) {
             if (data !== undefined) {
-                navigate('/home', { replace: true })
+                navigate('/home', { replace: true });
             }
-        }else{
-            navigate('/', { replace: true })
-        }
-    }, [data])
+        } 
+    }, [data]);
 
     const userNameHandler = (e) => {
-        setUserName(e.target.value)
-    }
+        setUserName(e.target.value);
+    };
+
     const passwordHandler = (e) => {
-        setpassword(e.target.value)
-    }
+        setpassword(e.target.value);
+    };
 
     const loginClickHandler = () => {
-
-        if (userName.length === 0)
-            return
-        if (password.length === 0)
-            return
-        dispatch(authData())
-    }
+        if (userName.trim().length === 0)
+            return;
+        if (password.trim().length === 0)
+            return;
+        dispatch(authData({ username: userName.trim(), password: password.trim() }));
+    };
 
     return (
         <div className='login-main-container'>

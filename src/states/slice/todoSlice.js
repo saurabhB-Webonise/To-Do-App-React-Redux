@@ -1,8 +1,7 @@
-
 import { createSlice } from '@reduxjs/toolkit';
 import { uuid } from '../../utilities/utils';
 
-const initialState = { data: [],loading:false,error:null }
+const initialState = { data: [], loading: false, error: null };
 
 export const todoSlice = createSlice({
     name: 'todoData',
@@ -19,16 +18,16 @@ export const todoSlice = createSlice({
             }
         },
         permanentDelete: (state, action) => {
-            return { data: state.data.items.filter((item, index) => item.id !== action.payload) }
+            return { data: state.data.items.filter((item, index) => item.id !== action.payload) };
         },
         toggleMoveToTrash: (state, action) => {
-            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, trashed: !todo.trashed } : todo) }
+            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, trashed: !todo.trashed } : todo) };
         },
         toggleCompleteStatus: (state, action) => {
-            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, completed: !todo.completed } : todo) }
+            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, completed: !todo.completed } : todo) };
         }
     },
 });
 
-export const { todoAdd, permanentDelete, toggleMoveToTrash, toggleCompleteStatus } = todoSlice.actions
-export default todoSlice.reducer
+export const { todoAdd, permanentDelete, toggleMoveToTrash, toggleCompleteStatus } = todoSlice.actions;
+export default todoSlice.reducer;

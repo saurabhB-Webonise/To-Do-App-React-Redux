@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { act } from 'react-dom/test-utils';
 
-export const authData = createAsyncThunk('api/authData', async () => {
+export const authData = createAsyncThunk('api/authData', async (creds) => {
+
+    const { username, password } = creds;
+
     const response = await axios({
         url: "https://dummyjson.com/auth/login",
         method: "POST",
         data: {
-            username: 'kminchelle',
-            password: '0lelplR',
+            username: username,
+            password: password,
         },
         headers: {
             ContentType: 'application/json'
@@ -17,7 +19,7 @@ export const authData = createAsyncThunk('api/authData', async () => {
     return response.data;
 });
 
-const apiSlice = createSlice({
+const authSlice = createSlice({
     name: 'api',
     initialState: {
         data: [],
@@ -45,5 +47,5 @@ const apiSlice = createSlice({
             });
     },
 });
-export const { logout } = apiSlice.actions
-export default apiSlice.reducer;
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;

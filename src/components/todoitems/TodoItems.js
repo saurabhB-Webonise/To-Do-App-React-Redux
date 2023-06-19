@@ -4,20 +4,20 @@ import { FaTrash } from 'react-icons/fa';
 
 function TodoItems({ onCheck, onClick, data }) {
 
-    const labelRef = useRef()
+    const labelRef = useRef();
 
     useEffect(() => {
-        const label = labelRef.current
-        label.className = data.completed ? "todoTextComplete" : "todoText"
-    }, [data.completed])
+        const label = labelRef.current;
+        label.className = data.completed ? "todoTextComplete" : "todoText";
+    }, [data.completed]);
 
     const checkHandler = () => {
-        onCheck(data.id)
-    }
+        onCheck(data.id);
+    };
 
     const clickHandler = () => {
-        onClick(data.id)
-    }
+        onClick(data.id);
+    };
 
     return <div className='todoitem' >
         <div className='todoItemWrapper'>
@@ -28,4 +28,4 @@ function TodoItems({ onCheck, onClick, data }) {
     </div>
 }
 
-export default TodoItems
+export default TodoItems;
