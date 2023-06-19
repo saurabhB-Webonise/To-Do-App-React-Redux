@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { uuid } from '../../utilities/utils';
 
-const initialState = { data: [],loading:false,error:null }
+const initialState = { data: [] }
 
 export const todoSlice = createSlice({
     name: 'todoData',

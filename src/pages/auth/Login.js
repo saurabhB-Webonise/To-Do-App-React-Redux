@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.css';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { authData } from '../../states/slice/authSlice';
+
+// I will remove this just for testing purpose
+// username: kminchelle
+// password: 0lelplR
 
 export default function Login() {
 
     const [userName, setUserName] = useState('')
     const [password, setpassword] = useState('')
+    const { data, loading, error } = useSelector((state) => state.api);
+    const dispatch = useDispatch();
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (!Array.isArray(data)) {
+            if (data !== undefined) {
+                navigate('/home', { replace: true })
+            }
+        }else{
+            navigate('/', { replace: true })
+        }
+    }, [data])
 
     const userNameHandler = (e) => {
         setUserName(e.target.value)
@@ -17,11 +34,12 @@ export default function Login() {
     }
 
     const loginClickHandler = () => {
+
         if (userName.length === 0)
             return
         if (password.length === 0)
             return
-        navigate('/home')
+        dispatch(authData())
     }
 
     return (

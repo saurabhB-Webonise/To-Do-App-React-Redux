@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './addtodo.css';
 import { todoAdd } from '../../states/slice/todoSlice';
-
+import { logout } from "../../states/slice/authSlice";
 
 function AddTodo() {
     const [text, setText] = useState("")
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const scrollToBottom = () => {
         window.scrollTo({
@@ -43,6 +45,13 @@ function AddTodo() {
             type="button"
             value="Add"
             onClick={addHandler} />
+        <input className="addButton"
+            type="button"
+            value="Logout"
+            onClick={() => {
+                dispatch(logout())
+                navigate('/', { replace: true })
+            }} />
     </div>
 }
 
