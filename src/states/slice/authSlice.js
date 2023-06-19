@@ -26,25 +26,20 @@ const apiSlice = createSlice({
     },
     reducers: {
         logout: (state, action) => {
-            console.log("calling logoout")
             return { ...state, data: [] }
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(authData.pending, (state) => {
-                console.log("pending")
                 state.loading = true;
                 state.error = null;
             })
             .addCase(authData.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
-                console.log("data coming")
-                console.log(action.payload)
             })
             .addCase(authData.rejected, (state, action) => {
-                console.log("error")
                 state.loading = false;
                 state.error = action.error.message;
             });
