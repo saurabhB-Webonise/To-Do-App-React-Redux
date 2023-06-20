@@ -2,29 +2,37 @@ import React, { useState, useEffect } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { authData } from '../../states/slice/authSlice';
+import { clearError } from '../../states/slice/authSlice';
+import { authData } from '../../operations/Operations';
 
-export default function Login() {
+export default function Login(props) {
 
-    const [userName, setUserName] = useState('');
-    const [password, setpassword] = useState('');
+    const [userName, setUserName] = useState('kminchelle');
+    const [password, setpassword] = useState('0lelplR');
     const { data, loading, error } = useSelector((state) => state.api);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!Array.isArray(data)) {
-            if (data !== undefined) {
-                navigate('/home', { replace: true });
-            }
+        clearErrorMessage()
+        if (!Array.isArray(data) && data !== undefined) {
+            navigate('/home', { replace: true });
         } 
     }, [data]);
 
+    const clearErrorMessage = () => {
+        if (error !== null) {
+            dispatch(clearError())
+        }
+    }
+
     const userNameHandler = (e) => {
+        clearErrorMessage()
         setUserName(e.target.value);
     };
 
     const passwordHandler = (e) => {
+        clearErrorMessage()
         setpassword(e.target.value);
     };
 
@@ -36,14 +44,17 @@ export default function Login() {
         dispatch(authData({ username: userName.trim(), password: password.trim() }));
     };
 
+    const messageCss = (error === null) ? 'message hide' : 'message show';
+
     return (
         <div className='login-main-container'>
             <div className='login-wrapper'>
-                <h3>ToDo</h3>
+                <label className={messageCss}>Login Failed</label>
+                <h3>To Do</h3>
                 <div className='login-form'>
                     <input className='login-input-box' type='text' placeholder='username' value={userName} onChange={userNameHandler} />
                     <input className='login-input-box' type='password' placeholder='password' value={password} onChange={passwordHandler} />
-                    <button type="button" onClick={loginClickHandler}>login</button>
+                    <button type="button" onClick={loginClickHandler}>Login</button>
                 </div>
             </div>
         </div>

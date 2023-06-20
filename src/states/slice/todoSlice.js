@@ -1,32 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { uuid } from '../../utilities/utils';
+import { userTodoData } from '../../operations/Operations';
 
 const initialState = { data: [], loading: false, error: null };
+
+// export const userTodoData = createAsyncThunk('todoData/userTodoData', async (userId) => {
+//     const response = await get(USER_RECORDS.concat(userId));
+//     return response;
+// })
 
 export const todoSlice = createSlice({
     name: 'todoData',
     initialState,
-    reducers: {
-        todoAdd: (state, action) => {
-            return {
-                data: [...state.data, {
-                    id: uuid(),
-                    text: action.payload,
-                    completed: false,
-                    trashed: false
-                }]
-            }
-        },
-        permanentDelete: (state, action) => {
-            return { data: state.data.items.filter((item, index) => item.id !== action.payload) };
-        },
-        toggleMoveToTrash: (state, action) => {
-            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, trashed: !todo.trashed } : todo) };
-        },
-        toggleCompleteStatus: (state, action) => {
-            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, completed: !todo.completed } : todo) };
-        }
-    },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(userTodoData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(userTodoData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.data = action.payload.todos;
+            })
+            .addCase(userTodoData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+    }
 });
 
 export const { todoAdd, permanentDelete, toggleMoveToTrash, toggleCompleteStatus } = todoSlice.actions;

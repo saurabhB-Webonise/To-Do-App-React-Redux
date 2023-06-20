@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { FaAngleUp } from 'react-icons/fa';
 import AddTodo from '../../components/addtodo/AddTodo';
 import TodoList from '../../components/todolist/TodoList';
 import './home.css';
 
-export default function Home() {
+import { useDispatch, useSelector } from 'react-redux';
+import { userTodoData } from '../../operations/Operations';
+
+export default function Home(props) {
   const { data, loading, error } = useSelector((state) => state.api);
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -18,16 +19,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if(!loading){
-      if (Array.isArray(data)) {
-        navigate('/pageNotFound', { replace: true });
-      }
-    }
-  }, [data]);
-
-  if (Array.isArray(data)){
-    return <></>
-  }
+    dispatch(userTodoData(data.id))
+  }, [data])
 
   return <div className="home-container">
     <AddTodo />

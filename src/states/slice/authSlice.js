@@ -1,23 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-export const authData = createAsyncThunk('api/authData', async (creds) => {
-
-    const { username, password } = creds;
-
-    const response = await axios({
-        url: "https://dummyjson.com/auth/login",
-        method: "POST",
-        data: {
-            username: username,
-            password: password,
-        },
-        headers: {
-            ContentType: 'application/json'
-        },
-    })
-    return response.data;
-});
+import { createSlice } from '@reduxjs/toolkit';
+import { authData } from '../../operations/Operations';
 
 const authSlice = createSlice({
     name: 'api',
@@ -30,6 +12,9 @@ const authSlice = createSlice({
         logout: (state, action) => {
             return { ...state, data: [] }
         },
+        clearError: (state, action) => {
+            return { ...state, error: null }
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -47,5 +32,5 @@ const authSlice = createSlice({
             });
     },
 });
-export const { logout } = authSlice.actions;
+export const { logout, clearError } = authSlice.actions;
 export default authSlice.reducer;

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import './addtodo.css';
 import { todoAdd } from '../../states/slice/todoSlice';
 import { logout } from "../../states/slice/authSlice";
+import { addNewTodo, userTodoData } from "../../operations/Operations";
+
 
 function AddTodo() {
     const [text, setText] = useState("");
@@ -22,14 +24,18 @@ function AddTodo() {
     };
 
     const addHandler = () => {
-        if (text.trim().length === 0) {
-            setText('');
-            alert('Invalid empty not allowed');
-            return;
-        }
-        dispatch(todoAdd(text.trim()));
-        setText('');
-        scrollToBottom();
+        addNewTodo((num) => {
+            console.log(num)
+            dispatch(userTodoData(num))
+        })
+        // if (text.trim().length === 0) {
+        //     setText('');
+        //     alert('Invalid empty not allowed');
+        //     return;
+        // }
+        // dispatch(todoAdd(text.trim()));
+        // setText('');
+        // scrollToBottom();
     };
 
     const logoutHandler = () => {

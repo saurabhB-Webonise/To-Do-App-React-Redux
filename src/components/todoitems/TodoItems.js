@@ -19,10 +19,13 @@ function TodoItems({ onCheck, onClick, data }) {
         onClick(data.id);
     };
 
+     
+// {id: 19, todo: 'Create a compost pile', completed: true, userId: 5}
+
     return <div className='todoitem' >
         <div className='todoItemWrapper'>
             <input className='checkBox' type='checkbox' onChange={checkHandler} checked={data.completed} />
-            <label ref={labelRef}className='todoText'>{data.text}</label>
+            <label ref={labelRef}className='todoText'>{data.todo}</label>
         </div>
         <span className='deleteButton'> <FaTrash onClick={clickHandler} /></span>
     </div>
