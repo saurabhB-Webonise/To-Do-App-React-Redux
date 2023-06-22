@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './sidebar.css'
 import { fetchAlllUsers } from '../../network/api-crud';
+import './sidebar.css';
 
 export default function Sidebar(props) {
-
   const [users, setUsers] = useState([]);
   const handleClick = (userData) => {
     props.user({ username: userData.username, password: userData.password })

@@ -5,7 +5,6 @@ import Home from '../pages/home/Home';
 import PageNotFound from '../pages/PageNotFound';
 import PrivateRoute from './PrivateRoute';
 
-
 export default function Router() {
     return <BrowserRouter>
         <Routes>
@@ -19,5 +18,3 @@ export default function Router() {
         </Routes>
     </BrowserRouter>
 }
-
-
