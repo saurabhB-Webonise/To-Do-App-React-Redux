@@ -5,10 +5,11 @@ import TodoList from '../../components/todolist/TodoList';
 import './home.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { userTodoData } from '../../operations/Operations';
+import { userTodoData } from '../../network/api-crud';
 
 export default function Home(props) {
-  const { data, loading, error } = useSelector((state) => state.api);
+  const { data } = useSelector((state) => state.api);
+  const todoData = useSelector(state => state.todoData.data);
   const dispatch = useDispatch()
 
   const scrollToTop = () => {
@@ -19,14 +20,15 @@ export default function Home(props) {
   };
 
   useEffect(() => {
-    dispatch(userTodoData(data.id))
+    if (todoData.length === 0) {
+      dispatch(userTodoData(data.id))
+    }
   }, [data])
 
   return <div className="home-container">
     <AddTodo />
     <br />
-    <TodoList />
-    <FaAngleUp id='scrollTopButton'
-      onClick={scrollToTop} />
+    <TodoList todoData={todoData} />
+    <FaAngleUp id='scrollTopButton' onClick={scrollToTop} />
   </div>
 }

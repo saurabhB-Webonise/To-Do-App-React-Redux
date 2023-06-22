@@ -1,17 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { userTodoData } from '../../operations/Operations';
+import { userTodoData } from '../../network/api-crud';
+import { uuid } from '../../utilities/utils';
 
 const initialState = { data: [], loading: false, error: null };
-
-// export const userTodoData = createAsyncThunk('todoData/userTodoData', async (userId) => {
-//     const response = await get(USER_RECORDS.concat(userId));
-//     return response;
-// })
 
 export const todoSlice = createSlice({
     name: 'todoData',
     initialState,
-    reducers: {},
+    reducers: {
+        todoAdd: (state, action) => {
+            return {
+                data: [...state.data, {
+                    id: uuid(),
+                    todo: action.payload.todo,
+                    completed: false,
+                    userId: action.payload.userId
+                }]
+            }
+        },
+        permanentDelete: (state, action) => {
+            return { data: state.data.filter((item, index) => item.id !== action.payload) }
+        },
+        toggleCompleteStatus: (state, action) => {
+            return { data: state.data.map(todo => (todo.id === action.payload) ? { ...todo, completed: !todo.completed } : todo) }
+        },
+        clearAllTodoData: (state) => {
+            return { ...state, data: [] }
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(userTodoData.pending, (state) => {
@@ -29,5 +45,5 @@ export const todoSlice = createSlice({
     }
 });
 
-export const { todoAdd, permanentDelete, toggleMoveToTrash, toggleCompleteStatus } = todoSlice.actions;
+export const { clearAllTodoData, todoAdd, permanentDelete, toggleCompleteStatus } = todoSlice.actions;
 export default todoSlice.reducer;

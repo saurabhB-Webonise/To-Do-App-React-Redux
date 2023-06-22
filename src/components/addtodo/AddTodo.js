@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch, } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './addtodo.css';
-import { todoAdd } from '../../states/slice/todoSlice';
-import { logout } from "../../states/slice/authSlice";
-import { addNewTodo, userTodoData } from "../../operations/Operations";
+import { clearAllTodoData, todoAdd } from '../../states/slice/todoSlice';
+import {clearAuthData } from "../../states/slice/authSlice";
+import { addNewTodo} from "../../network/api-crud";
 
 
 function AddTodo() {
     const [text, setText] = useState("");
+    const { data } = useSelector((state) => state.api);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
     const scrollToBottom = () => {
         window.scrollTo({
             top: document.documentElement.scrollHeight,
@@ -24,22 +25,22 @@ function AddTodo() {
     };
 
     const addHandler = () => {
-        addNewTodo((num) => {
-            console.log(num)
-            dispatch(userTodoData(num))
+
+        if (text.trim().length === 0) {
+            setText('');
+            alert('Invalid empty not allowed');
+            return;
+        }
+        addNewTodo({ userId: data.id, todo: text }, (data) => {
+            dispatch(todoAdd(data));
+            scrollToBottom();
+            setText('');
         })
-        // if (text.trim().length === 0) {
-        //     setText('');
-        //     alert('Invalid empty not allowed');
-        //     return;
-        // }
-        // dispatch(todoAdd(text.trim()));
-        // setText('');
-        // scrollToBottom();
     };
 
     const logoutHandler = () => {
-        dispatch(logout());
+        dispatch(clearAuthData());
+        dispatch(clearAllTodoData())
         navigate('/', { replace: true });
     };
 
@@ -56,10 +57,14 @@ function AddTodo() {
             type="button"
             value="Add"
             onClick={addHandler} />
-        <input className="addButton"
-            type="button"
-            value="Logout"
-            onClick={logoutHandler} />
+        <div className="dropdown">
+            <img alt="" className="avatar" src={data.image} />
+            <div className="dropdown-content">
+                <span>{data.username}</span>
+                <div className="divider"></div>
+                <span onClick={logoutHandler}>Logout</span>
+            </div>
+        </div>
     </div>
 }
 

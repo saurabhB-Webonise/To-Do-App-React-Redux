@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authData } from '../../operations/Operations';
+import { authData } from '../../network/api-crud';
 
 const authSlice = createSlice({
     name: 'api',
@@ -9,10 +9,10 @@ const authSlice = createSlice({
         error: null
     },
     reducers: {
-        logout: (state, action) => {
+        clearAuthData: (state) => {
             return { ...state, data: [] }
         },
-        clearError: (state, action) => {
+        clearError: (state) => {
             return { ...state, error: null }
         }
     },
@@ -32,5 +32,5 @@ const authSlice = createSlice({
             });
     },
 });
-export const { logout, clearError } = authSlice.actions;
+export const { clearAuthData, clearError } = authSlice.actions;
 export default authSlice.reducer;

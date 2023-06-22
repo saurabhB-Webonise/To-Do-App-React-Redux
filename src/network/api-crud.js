@@ -1,21 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { post ,get} from '../network/NetworkCall';
-import { LOGIN ,USER_RECORDS} from '../constants/api-constants';
+import { post, get, fetchGet } from './network-utils';
+import { ADD_TODO, ALL_USERS, DOMAIN, LOGIN, USER_RECORDS } from '../constants/api-constants';
 
-export const addNewTodo = (callback) => {
-    fetch('https://dummyjson.com/todos/add', {
+export const addNewTodo = (newRecord, callback) => {
+    fetch(DOMAIN.concat(ADD_TODO), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            todo: 'first record test',
+            todo: newRecord.todo,
             completed: false,
-            userId: 15,
+            userId: newRecord.userId,
         })
-    })
-        .then(res => res.json())
-        .then(console.log)
-        .then(()=>{
-            callback(15)
+    }).then((response) => response.json())
+        .then((res) => {
+            callback(res)
         })
 }
 
@@ -32,3 +30,7 @@ export const userTodoData = createAsyncThunk('todoData/userTodoData', async (use
     const response = await get(USER_RECORDS.concat(userId));
     return response;
 })
+
+export const fetchAlllUsers = async (callback) => {
+    await fetchGet().then((res) => callback(res.users))
+}

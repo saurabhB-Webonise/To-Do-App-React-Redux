@@ -15,7 +15,7 @@
     right: 0;
   }
   
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 15px;
   }
   
@@ -31,5 +31,5 @@
   
   ::-webkit-scrollbar-thumb:hover {
     background: orange;
-  }
+  } */
   

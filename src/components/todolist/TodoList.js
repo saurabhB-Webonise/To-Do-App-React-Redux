@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import TodoItems from '../todoitems/TodoItems';
-import { toggleMoveToTrash, toggleCompleteStatus } from '../../states/slice/todoSlice';
+import { toggleCompleteStatus, permanentDelete } from '../../states/slice/todoSlice';
 import './todolist.css';
 
-function TodoList() {
+function TodoList(props) {
 
-    const todoData = useSelector(state => state.todoData.data);
     let dispatch = useDispatch();
 
     const checkHandler = (id) => {
@@ -14,14 +13,14 @@ function TodoList() {
     };
 
     const trashhandler = (id) => {
-        dispatch(toggleMoveToTrash(id));
+        dispatch(permanentDelete(id));
     };
 
     return (
         <div className='mainContainer'>
             {
-                Array.isArray(todoData) &&
-                todoData.map(data => (
+                Array.isArray(props.todoData) &&
+                props.todoData.map(data => (
                     !data.trashed &&
                     <TodoItems key={data.id}
                         data={data}

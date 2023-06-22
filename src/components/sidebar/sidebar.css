@@ -1,0 +1,35 @@
+.sidebar-main-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: sticky;
+    background-color: orange;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.sidebar-wrapper {
+    padding: 5px;
+}
+
+.user-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.user-card img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    border: 1px solid orange;
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -1,8 +1,13 @@
+.outter-container {
+    display: flex;
+    background-color: red;
+}
+
 .login-main-container {
     display: flex;
+    flex: 6;
     flex-direction: column;
     background-color: white;
-    flex: 1;
     height: 100vh;
     align-items: center;
     justify-content: center;
