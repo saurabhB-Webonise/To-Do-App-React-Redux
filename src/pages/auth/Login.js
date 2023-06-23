@@ -38,8 +38,10 @@ export default function Login() {
     };
 
     const loginClickHandler = () => {
-        if (userName.trim().length === 0 || password.trim().length === 0)
+        if (userName.trim().length === 0 || password.trim().length === 0) {
+            alert("Please fill both fields")
             return;
+        }
         dispatch(authData({ username: userName.trim(), password: password.trim() }));
     };
 
