@@ -58,7 +58,7 @@ function AddTodo() {
             value="Add"
             onClick={addHandler} />
         <div className="dropdown">
-            <img alt="" className="avatar" src={data.image} />
+            <img alt="Profile image" className="avatar" src={data.image} />
             <div className="dropdown-content">
                 <span>{data.username}</span>
                 <div className="divider"></div>
