@@ -13,7 +13,7 @@ export default function Router() {
                 <PrivateRoute>
                     <Home />
                 </PrivateRoute>} />
-            <Route path='/pageNotFound' element={<PageNotFound />} />
+            <Route path='/404' element={<PageNotFound />} />
             <Route path='*' element={<PageNotFound />} />
         </Routes>
     </BrowserRouter>
