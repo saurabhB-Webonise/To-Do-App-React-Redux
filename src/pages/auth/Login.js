@@ -8,8 +8,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 
 export default function Login() {
 
-    const [userName, setUserName] = useState('kminchelle');
-    const [password, setpassword] = useState('0lelplR');
+    const [userName, setUserName] = useState('');
+    const [password, setpassword] = useState('');
     const { data, error } = useSelector((state) => state.api);
     const dispatch = useDispatch();
     const navigate = useNavigate();
