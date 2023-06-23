@@ -45,10 +45,7 @@ export default function Login() {
         dispatch(authData({ username: userName.trim(), password: password.trim() }));
     };
 
-    const messageCss = (error === null) ? 'message hide' : 'message show';
-
     return (
-
         <div className='outter-container'>
             <Sidebar user={(user) => {
                 setUserName(user.username)
@@ -56,7 +53,7 @@ export default function Login() {
             }} />
             <div className='login-main-container'>
                 <div className='login-wrapper'>
-                    <label className={messageCss}>Login Failed</label>
+                    <label className={`message ${(error === null) ? 'hide' : 'show'}`}>Login Failed</label>
                     <h3>To Do</h3>
                     <div className='login-form'>
                         <input className='login-input-box' type='text' placeholder='username' value={userName} onChange={userNameHandler} />
