@@ -16,7 +16,7 @@ export default function Login() {
 
     useEffect(() => {
         clearErrorMessage()
-        if (!Array.isArray(data) && data !== undefined) {
+        if (!Array.isArray(data)) {
             navigate('/home', { replace: true });
         }
     }, [data]);
@@ -38,9 +38,7 @@ export default function Login() {
     };
 
     const loginClickHandler = () => {
-        if (userName.trim().length === 0)
-            return;
-        if (password.trim().length === 0)
+        if (userName.trim().length === 0 || password.trim().length === 0)
             return;
         dispatch(authData({ username: userName.trim(), password: password.trim() }));
     };
