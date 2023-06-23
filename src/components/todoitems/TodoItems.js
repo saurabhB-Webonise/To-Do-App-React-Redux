@@ -1,15 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import './todoitems.css';
 import { FaTrash } from 'react-icons/fa';
 
 function TodoItems({ onCheck, onClick, data }) {
 
-    const labelRef = useRef();
-
-    useEffect(() => {
-        const label = labelRef.current;
-        label.className = data.completed ? "todoTextComplete" : "todoText";
-    }, [data.completed]);
+    const labelCss = data.completed ? "todoTextComplete" : "todoText"
 
     const checkHandler = () => {
         onCheck(data.id);
@@ -22,7 +17,7 @@ function TodoItems({ onCheck, onClick, data }) {
     return <div className='todoitem' >
         <div className='todoItemWrapper'>
             <input className='checkBox' type='checkbox' onChange={checkHandler} checked={data.completed} />
-            <label ref={labelRef} className='todoText'>{data.todo}</label>
+            <label className={labelCss}>{data.todo}</label>
         </div>
         <span className='deleteButton'><FaTrash onClick={clickHandler} /></span>
     </div>
