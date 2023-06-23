@@ -3,16 +3,16 @@ import { fetchAlllUsers } from '../../network/api-crud';
 import './sidebar.css';
 
 export default function Sidebar(props) {
+  
   const [users, setUsers] = useState([]);
+
   const handleClick = (userData) => {
-    props.user({ username: userData.username, password: userData.password })
-  }
+    props.user({ username: userData.username, password: userData.password });
+  };
 
   useEffect(() => {
-    fetchAlllUsers((data) => {
-      setUsers(data)
-    })
-  }, [])
+    fetchAlllUsers().then((data)=>setUsers(data.users));
+  }, []);
 
   return (
     <div className='sidebar-main-container'>

@@ -25,13 +25,12 @@ function AddTodo() {
     };
 
     const addHandler = () => {
-
         if (text.trim().length === 0) {
             setText('');
             alert('Invalid empty not allowed');
             return;
         }
-        addNewTodo({ userId: data.id, todo: text }, (data) => {
+        addNewTodo({ userId: data.id, todo: text }).then((data)=>{
             dispatch(todoAdd(data));
             scrollToBottom();
             setText('');
