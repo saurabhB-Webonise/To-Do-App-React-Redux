@@ -18,7 +18,7 @@ export default function Sidebar(props) {
     <div className='sidebar-main-container'>
       <div className='sidebar-wrapper'>
         {(users.length !== 0) && users.map(data => (
-          <div className="user-card" onClick={() => handleClick(data)}>
+          <div key={data.id} className="user-card" onClick={() => handleClick(data)}>
             <img alt='Profile image' src={data.image} />
             <span>{data.username}</span>
           </div>
