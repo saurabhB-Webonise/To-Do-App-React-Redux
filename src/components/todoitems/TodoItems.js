@@ -5,7 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 function TodoItems({ onCheck, onClick, data }) {
 
     const checkHandler = () => {
-        onCheck(data.id);
+        onCheck({ id: data.id, completed: data.completed });
     };
 
     const clickHandler = () => {

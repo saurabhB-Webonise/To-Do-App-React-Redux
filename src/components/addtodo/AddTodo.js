@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './addtodo.css';
 import { clearAllTodoData, todoAdd } from '../../states/slice/todoSlice';
-import {clearAuthData } from "../../states/slice/authSlice";
-import { addNewTodo} from "../../network/api-crud";
+import { clearAuthData } from "../../states/slice/authSlice";
+import { addNewTodo } from "../../network/api-crud";
 
 
 function AddTodo() {
@@ -12,7 +12,7 @@ function AddTodo() {
     const { data } = useSelector((state) => state.api);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+
     const scrollToBottom = () => {
         window.scrollTo({
             top: document.documentElement.scrollHeight,
@@ -30,11 +30,11 @@ function AddTodo() {
             alert('Invalid empty not allowed');
             return;
         }
-        addNewTodo({ userId: data.id, todo: text }).then((data)=>{
+        addNewTodo({ userId: data.id, todo: text }).then((data) => {
             dispatch(todoAdd(data));
             scrollToBottom();
             setText('');
-        })
+        }).catch((error) => { })
     };
 
     const logoutHandler = () => {
