@@ -1,27 +1,39 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import TodoItems from '../todoitems/TodoItems';
-import { toggleMoveToTrash, toggleCompleteStatus } from '../../states/slice/todoSlice';
+import { toggleCompleteStatus, permanentDelete } from '../../states/slice/todoSlice';
 import './todolist.css';
+import { deleteTodo, updateTodo } from '../../network/api-crud';
 
-function TodoList() {
+function TodoList(props) {
 
-    const todoData = useSelector(state => state.todoData.data)
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
 
-    const checkHandler = (id) => {
-        dispatch(toggleCompleteStatus(id))
-    }
+    const checkHandler = ({ id, completed }) => {
+        if (typeof id === 'number') {
+            updateTodo(id, { completed: !completed }).then((res) => {
+                dispatch(toggleCompleteStatus(id));
+            }).catch((error) => { })
+        } else {
+            dispatch(toggleCompleteStatus(id));
+        }
+    };
 
     const trashhandler = (id) => {
-        dispatch(toggleMoveToTrash(id))
-    }
+        if (typeof id === 'number') {
+            deleteTodo(id).then((res) => {
+                dispatch(permanentDelete(id));
+            }).catch((error) => { })
+        } else {
+            dispatch(permanentDelete(id));
+        }
+    };
 
     return (
         <div className='mainContainer'>
             {
-                Array.isArray(todoData) &&
-                todoData.map(data => (
+                Array.isArray(props.todoData) &&
+                props.todoData.map(data => (
                     !data.trashed &&
                     <TodoItems key={data.id}
                         data={data}
@@ -34,4 +46,4 @@ function TodoList() {
     );
 }
 
-export default TodoList
+export default TodoList;

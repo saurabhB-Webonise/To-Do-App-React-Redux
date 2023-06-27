@@ -1,6 +1,6 @@
 export const containsWhitespace = (str) => {
     return /\s/.test(str);
-}
+};
 
 export const uuid = () => {
     let dt = new Date().getTime();
@@ -10,4 +10,4 @@ export const uuid = () => {
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
-}
+};
