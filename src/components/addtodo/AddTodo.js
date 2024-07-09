@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './addtodo.css';
-import { todoAdd } from '../../states/slice/todoSlice';
+import { clearAllTodoData, todoAdd } from '../../states/slice/todoSlice';
+import { clearAuthData } from "../../states/slice/authSlice";
+import { addNewTodo } from "../../network/api-crud";
 
 
 function AddTodo() {
-    const [text, setText] = useState("")
-    const dispatch = useDispatch()
+    const [text, setText] = useState("");
+    const { data } = useSelector((state) => state.api);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const scrollToBottom = () => {
         window.scrollTo({
@@ -16,19 +21,27 @@ function AddTodo() {
     };
 
     const textChange = (e) => {
-        setText(e.target.value)
-    }
+        setText(e.target.value);
+    };
 
     const addHandler = () => {
         if (text.trim().length === 0) {
-            setText('')
-            alert('Invalid empty not allowed')
-            return
+            setText('');
+            alert('Invalid empty not allowed');
+            return;
         }
-        dispatch(todoAdd(text.trim()))
-        setText('')
-        scrollToBottom()
-    }
+        addNewTodo({ userId: data.id, todo: text }).then((data) => {
+            dispatch(todoAdd(data));
+            scrollToBottom();
+            setText('');
+        }).catch((error) => { })
+    };
+
+    const logoutHandler = () => {
+        dispatch(clearAuthData());
+        dispatch(clearAllTodoData())
+        navigate('/', { replace: true });
+    };
 
     return <div className='mainDiv'>
         <input
@@ -43,8 +56,16 @@ function AddTodo() {
             type="button"
             value="Add"
             onClick={addHandler} />
+        <div className="dropdown">
+            <img alt="Profile image" className="avatar" src={data.image} />
+            <div className="dropdown-content">
+                <span>{data.username}</span>
+                <div className="divider"></div>
+                <span onClick={logoutHandler}>Logout</span>
+            </div>
+        </div>
     </div>
 }
 
-export default AddTodo
+export default AddTodo;
 
